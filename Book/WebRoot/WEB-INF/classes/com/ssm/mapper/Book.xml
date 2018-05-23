@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.mapper.BookMapper">
+	<!-- 增加书籍 -->
+	<insert id="add" parameterType="Book">
+		insert into book values
+		(#{Book_Bid},#{Book_Name},
+		#{Book_New_or_Old},#{Book_Number},#{Book_Price}
+		,#{Book_Description}
+		,#{Book_Image},#{Book_Up_Down})
+	</insert>
+	<!--查询全部书籍，List -->
+	<select id="list" resultType="Book">
+		select * from book
+	</select>
+	<!-- 删除书籍按ID -->
+	<delete id="delete" parameterType="String">
+		delete from book where
+		Book_Bid= #{id}
+	</delete>
+	<!-- 根据ID查询 -->
+	<select id="get" parameterType="String" resultType="Book">
+		select * from
+		book where Book_Bid= #{id}
+	</select>
+	<!-- 修改书籍信息 -->
+	<update id="update" parameterType="Book">
+		update book set
+		Book_Bid=#{Book_Bid},Book_Name=#{Book_Name},
+		Book_New_or_Old=#{Book_New_or_Old},Book_Number=#{Book_Number},
+		Book_Price=#{Book_Price},Book_Description=#{Book_Description},
+		Book_Image=#{Book_Image},Book_Up_Down=#{Book_Up_Down}
+		where
+		Book_Bid=#{Book_Bid}
+	</update>
+</mapper>
+
