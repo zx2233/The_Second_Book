@@ -32,5 +32,13 @@ public class User_bookServiceimpl implements User_bookService {
 		// TODO Auto-generated method stub
 		return user_bookMapper.list();
 	}
+	/* (non-Javadoc)
+	 * @see com.ssm.service.User_bookService#add(com.ssm.pojo.User_book)
+	 */
+	@Override
+	public void add(User_book user_book) {
+		// TODO Auto-generated method stub
+		user_bookMapper.add(user_book);
+	}
 
 }

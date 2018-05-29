@@ -17,6 +17,19 @@ public class User_book {
 	private String Aduit_status;
 	private String Selling_status;
 	private String isCollection;
+	
+	public User_book() {
+		super();
+	}
+	public User_book(String user_Uid, String book_Bid, String aduit_status,
+			String selling_status, String isCollection) {
+		super();
+		User_Uid = user_Uid;
+		Book_Bid = book_Bid;
+		Aduit_status = aduit_status;
+		Selling_status = selling_status;
+		this.isCollection = isCollection;
+	}
 	/** 
 	 * @author:Rabbit
 	 * @return the user_Uid

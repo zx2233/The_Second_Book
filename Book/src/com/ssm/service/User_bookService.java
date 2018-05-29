@@ -17,4 +17,5 @@ import com.ssm.pojo.User_book;
  */
 public interface User_bookService {
 	List<User_book> list();
+	void add(User_book user_book);
 }

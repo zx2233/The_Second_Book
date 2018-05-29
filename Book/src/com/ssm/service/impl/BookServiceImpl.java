@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssm.mapper.BookMapper;
 import com.ssm.pojo.Book;
+import com.ssm.pojo.FindAllBook;
 import com.ssm.service.BookService;
 
 /**
@@ -25,12 +26,16 @@ public class BookServiceImpl implements BookService {
 
 	@Autowired
 	BookMapper bookMapper;
+
 	@Override
 	public void add(Book book) {
 		// TODO Auto-generated method stub
 		bookMapper.add(book);
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.ssm.service.BookService#list()
 	 */
 	@Override
@@ -38,7 +43,10 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return bookMapper.list();
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.ssm.service.BookService#delete(java.lang.String)
 	 */
 	@Override
@@ -46,7 +54,10 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		bookMapper.delete(id);
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.ssm.service.BookService#get(java.lang.String)
 	 */
 	@Override
@@ -54,12 +65,26 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return bookMapper.get(id);
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.ssm.service.BookService#update(com.ssm.pojo.Book)
 	 */
 	@Override
 	public void update(Book book) {
 		// TODO Auto-generated method stub
 		bookMapper.update(book);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.ssm.service.BookService#listAllBook()
+	 */
+	@Override
+	public List<FindAllBook> listAllBook() {
+		// TODO Auto-generated method stub
+		return bookMapper.listAllBook();
 	}
 }

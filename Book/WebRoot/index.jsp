@@ -8,23 +8,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
 
-	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
 <!-- 关于直接访问网页路径的寻找和转发后路径的寻找，
 我的思路是在本身网页加上js文件存在的初始路径
 ，然后转发时根据命名空间寻找正确的路径 -->
-<script type="text/javascript">
-	/*将post method 改变为delete*/
-	$(function() {
-		alert("ss")
-		$(".delete").click(function() {
-			var href = $(this).attr("href");
-			$("#formdelete").attr("action", href).submit();
-			return false;
-		})
-	})
-</script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/Book.js"></script>
   </head>
-  
   <body>
    <div style="width:500px;margin:0px auto;text-align:center">
 	<table align='center' border='1' cellspacing='0'>
@@ -74,6 +63,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <form id="formdelete" action="" method="POST">
 	<input type="hidden" name="_method" value="DELETE">
 </form>
-
+<button id="btn">点击</button>
   </body>
 </html>

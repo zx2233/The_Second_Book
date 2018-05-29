@@ -2,7 +2,6 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.ssm.mapper.BookMapper">
 	<!-- 增加书籍 -->
 	<insert id="add" parameterType="Book">
@@ -36,5 +35,11 @@
 		where
 		Book_Bid=#{Book_Bid}
 	</update>
+	<!-- 查询所有审核通过状态的书籍 -->
+	<select id="listAllBook" resultType="FindAllBook">
+		select * from user_book,book
+		where user_book.Book_Bid=book.Book_Bid 
+		and user_book.Aduit_status='1'
+	</select>
 </mapper>
 

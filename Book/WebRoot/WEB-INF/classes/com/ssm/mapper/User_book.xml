@@ -7,5 +7,13 @@
 	<select id="list" resultType="User_book">
 		select * from user_book
 	</select>
+	<insert id="add" parameterType="Book">
+		insert into user_book values
+		(#{User_Uid},#{Book_Bid},
+		#{Aduit_status},#{Selling_status},#{isCollection})
+	</insert>
+	<select id="listAllBook" parameterType="java.util.List"  resultType="User_book">
+		select * from user_book
+	</select>
 </mapper>
 

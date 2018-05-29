@@ -8,6 +8,7 @@ package com.ssm.mapper;
 import java.util.List;
 
 import com.ssm.pojo.Book;
+import com.ssm.pojo.FindAllBook;
 
 /**
  * @ClassName:BookMapper
@@ -21,4 +22,5 @@ public interface BookMapper {
     public List<Book> list();
     public void update(Book book);
     public Book get(String id);
+    public List<FindAllBook> listAllBook();
 }

@@ -14,6 +14,7 @@ import com.ssm.mapper.BookMapper;
 import com.ssm.mapper.LoginMapper;
 import com.ssm.mapper.User_bookMapper;
 import com.ssm.pojo.Book;
+import com.ssm.pojo.FindAllBook;
 import com.ssm.pojo.Login;
 import com.ssm.service.BookService;
 import com.ssm.service.LoginService;
@@ -22,14 +23,15 @@ import com.ssm.service.User_bookService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
 public class Booktest {
-	/**********BOOK**********************/
+	/********** BOOK **********************/
 	@Autowired
 	BookMapper bookMapper;
 	@Autowired
 	BookService bookService;
+
 	@Test
 	public void addTest() {
-		Book book=new Book();
+		Book book = new Book();
 		book.setBook_Bid("2");
 		book.setBook_Description("2");
 		book.setBook_Image("2");
@@ -40,20 +42,23 @@ public class Booktest {
 		book.setBook_Up_Down("2");
 		bookService.add(book);
 	}
+
 	@Test
 	public void test1() {
-		List<Book> list=bookService.list();
+		List<Book> list = bookService.list();
 		for (Book book : list) {
-			System.out.println( book.getBook_Bid());
+			System.out.println(book.getBook_Bid());
 		}
 	}
+
 	@Test
 	public void delete3() {
 		bookService.delete("2");
 	}
+
 	@Test
 	public void updateBook() {
-		Book book=new Book();
+		Book book = new Book();
 		book.setBook_Bid("2");
 		book.setBook_Description("3");
 		book.setBook_Image("2");
@@ -64,10 +69,18 @@ public class Booktest {
 		book.setBook_Up_Down("2");
 		bookService.update(book);
 	}
+
 	@Test
 	public void getBook() {
-		Book book=bookService.get("2");
+		Book book = bookService.get("2");
 		System.out.println(book.getBook_Description());
 	}
-	
+
+	@Test
+	public void getAllBook() {
+		List<FindAllBook> list = bookService.listAllBook();
+		for (FindAllBook findAllBook : list) {
+			System.out.println(findAllBook.getBook_Name());
+		}
+	}
 }

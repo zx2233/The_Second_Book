@@ -8,8 +8,7 @@ package com.ssm.service;
 import java.util.List;
 
 import com.ssm.pojo.Book;
-
-
+import com.ssm.pojo.FindAllBook;
 
 /**
  * @ClassName:BookService
@@ -19,8 +18,14 @@ import com.ssm.pojo.Book;
  */
 public interface BookService {
 	List<Book> list();
+
 	void delete(String id);
+
 	void add(Book c);
-     void update(Book book);
-     Book get(String id);
+
+	void update(Book book);
+
+	Book get(String id);
+
+	List<FindAllBook> listAllBook();
 }

@@ -17,7 +17,7 @@
 		init-method="init" destroy-method="close">
 		<!-- 基本属性 url、user、password -->
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/book?characterEncoding=UTF-8" />
+			value="jdbc:mysql://localhost:3306/book?useUnicode=true&amp;characterEncoding=UTF-8" />
 		<property name="username" value="root" />
 		<property name="password" value="123456" />
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -85,8 +85,23 @@
 	</tx:advice>
 
 	<aop:config>
-		<aop:pointcut id="serviceMethod"
-			expression="execution(* com.ssm.service.*.*(..))" />
+		<aop:pointcut id="serviceMethod" expression="execution(* com.ssm.service.*.*(..))" />
 		<aop:advisor pointcut-ref="serviceMethod" advice-ref="txadvice" />
 	</aop:config>
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
 </beans>
