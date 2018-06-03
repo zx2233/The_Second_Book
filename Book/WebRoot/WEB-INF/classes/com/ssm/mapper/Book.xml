@@ -36,10 +36,27 @@
 		Book_Bid=#{Book_Bid}
 	</update>
 	<!-- 查询所有审核通过状态的书籍 -->
-	<select id="listAllBook" resultType="FindAllBook">
+	<select id="listAllAuditedBook" resultType="FindAllBook" parameterType="String">
 		select * from user_book,book
 		where user_book.Book_Bid=book.Book_Bid 
-		and user_book.Aduit_status='1'
+		and user_book.Aduit_status='已审核' and User_Uid=#{id}
 	</select>
+	<!-- 查询所有审核未通过状态的书籍 -->
+	<select id="listAllBookNoAudit" resultType="FindAllBook" parameterType="String">
+		select * from user_book,book
+		where user_book.Book_Bid=book.Book_Bid 
+		and user_book.Aduit_status='未审核' and User_Uid=#{id}
+	</select>
+	<!-- 查询所有未审核和已审核状态的书籍，并且书籍为未发布状态 -->
+	<select id="listAllBookUnpublish" resultType="FindAllBook" parameterType="String">
+		select * from user_book,book
+		where user_book.Book_Bid=book.Book_Bid 
+		and  User_Uid=#{id} and user_book.Aduit_status LIKE '%审核%'
+		and user_book.Selling_status='未发布'
+	</select>
+	<!-- 对书籍进行下架操作，删除book表中书籍记录 -->
+	<!-- <delete id="Unpublish_book" parameterType="Book">
+		delete from book where  Book_Bid=#{Book_Bid} 
+	</delete> -->
 </mapper>
 

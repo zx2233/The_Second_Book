@@ -5,26 +5,32 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>No,I am not find</title>
-
+<title>My JSP 'Book_Publish_AduitResult.jsp' starting page</title>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="css/bootstrap-responsive.min.css"
 	type="text/css"></link>
 <link rel="stylesheet" href="css/top.css" type="text/css"></link>
-<script type="text/javascript" src="js/AduitResult.js"></script>
 <link rel="stylesheet" href="css/Aduitresult.css" type="text/css"></link>
-<script type="text/javascript" src="js/Published.js"></script>
-<script type="text/javascript" src="js/Published_UnPublished.js"></script>
-<script type="text/javascript" src="js/AduitResult_publish.js"></script>
-<script type="text/javascript" src="js/Published_UpdateMesg.js"></script>
 </head>
+<!-- <script type="text/javascript">
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+	function publish(){
+		alert("publish1");
+		alert(GetQueryString(Book_Bid));
+	}
+
+</script> -->
 <body>
 	<div id="wrap">
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -42,12 +48,9 @@
 							${sessionScope.user}
 						</p>
 						<ul class="nav">
-							<li><a href="#">首页</a>
-							</li>
-							<li class="active"><a href="Publish.jsp">发布商品</a>
-							</li>
-							<li><a href="#contact">开发人员</a>
-							</li>
+							<li><a href="#">首页</a></li>
+							<li class="active"><a href="Publish.jsp">发布商品</a></li>
+							<li><a href="#contact">开发人员</a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -72,7 +75,7 @@
 											class="icon-edit"></i>书籍发布</span> </a>
 								</div>
 								<div class="accordion-inner">
-									 <a href="javascript:void(0)" id="AduitClick"><span><i
+									 <a href="findAllBook" id=""><span><i
 											class="icon-edit"></i>审核结果</span> </a>
 								</div>
 							</div>
@@ -84,7 +87,7 @@
 							</div>
 							<div id="collapseTwo" class="accordion-body collapse">
 								<div class="accordion-inner">
-									<a href="javascript:void(0)" id="PublishedClick" ><span><i class="icon-gift"></i>已发布</span> </a>
+									<a href="#"><span><i class="icon-gift"></i>已发布</span> </a>
 								</div>
 								<div class="accordion-inner">
 									<a href="#"><span><i class="icon-gift"></i>已购买</span> </a>
@@ -143,58 +146,34 @@
 			<!--/span-->
 			<div class="span10">
 				<div class="hero-unit">
-					<div id="ajaxchange">
-						<form class="form-horizontal" action="addBook" method="post"
-							enctype="multipart/form-data">
-							<div class="control-group">
-								<label class="control-label" for="inputEmail">书籍名称</label>
-								<div class="controls">
-									<input type="text" name="Book_Name" placeholder="书籍名称">
-								</div>
+					<c:forEach items="${list}" var="c" varStatus="st">
+						<div class="Content">
+							<div class="img">
+								<img alt="" src="img\abc123是.png">
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">新旧程度</label>
-								<div class="controls">
-									<select name="Book_New_or_Old">
-										<option value="四成">四成</option>
-										<option value="五成">五成</option>
-										<option value="六成">六成</option>
-										<option value="七成">七成</option>
-									</select>
-								</div>
+							<div class="AduitData">
+								<span class="AduitDataSpan">书籍名称:</span> 
+								<span class="AduitDataSpan">${c.book_Bid}</span> 
+								<span class="AduitDataSpan">新旧程度:</span>
+								<span class="AduitDataSpan">${c.book_New_or_Old}</span> 
+								<span class="AduitDataSpan">书籍数量:</span> 
+								<span class="AduitDataSpan">${c.book_Number}</span>
+								<span class="AduitDataSpan">书籍价格:</span>
+								<span class="AduitDataSpan">${c.book_Price}</span> 
+								<span class="AduitDataSpan">审核结果:</span>
+								<span class="AduitDataSpan">${c.aduit_status}</span>
+								<span class="AduitDataSpan">发布结果:</span>
+								<span class="AduitDataSpan">${c.selling_status}</span>
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">书籍数量</label>
-								<div class="controls">
-									<input type="text" name="Book_Number" placeholder="书籍数量"">
-								</div>
+							<div class="Aduitbutton">
+								 <a href="findAllBook?Book_Bid=${c.book_Bid}&User_Uid=${c.user_Uid}"  class="btn btn-primary" onclick="publish()" >发布书籍</a>
+								<p>
+								<p>
+									<a href="" class="btn btn-primary">取消审核</a>
+								<p>
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">书籍价格</label>
-								<div class="controls">
-									<input type="text" name="Book_Price" placeholder="书籍价格"">
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">书籍图片</label>
-								<div class="controls">
-									<input type="file" name="file">
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">书籍描述</label>
-								<div class="controls">
-									<textarea name="Book_Description" rows="5"></textarea>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls">
-									<button type="submit" class="btn btn-primary">提交</button>
-								</div>
-							</div>
-							<font color=" #e4393c"><h4>${message}</h4> </font>
-						</form>
-					</div>
+						</div>
+					</c:forEach>
 				</div>
 
 				<!--/row-->
@@ -205,6 +184,7 @@
 	</div>
 	<HR id="hr" style="FILTER: alpha(opacity=0,finishopacity=100,style=1)"
 		width="100%" color=#987cb9 SIZE=3>
+	<!--987cb9  -->
 	<div id="footer">
 		<div class="container">
 			<p class="muted credit">此致感谢 cctv</p>

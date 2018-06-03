@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssm.mapper.User_bookMapper;
+import com.ssm.pojo.FindAllBook;
 import com.ssm.pojo.User_book;
 import com.ssm.service.User_bookService;
 
@@ -39,6 +40,38 @@ public class User_bookServiceimpl implements User_bookService {
 	public void add(User_book user_book) {
 		// TODO Auto-generated method stub
 		user_bookMapper.add(user_book);
+	}
+	/* (non-Javadoc)
+	 * @see com.ssm.service.User_bookService#publish(com.ssm.pojo.User_book)
+	 */
+	@Override
+	public void publish(User_book user_book) {
+		// TODO Auto-generated method stub
+		user_bookMapper.publish(user_book);
+	}
+	/* (non-Javadoc)
+	 * @see com.ssm.service.User_bookService#listAllSellingBook(java.lang.String)
+	 */
+	@Override
+	public List<FindAllBook> listAllPublishedBook(String id) {
+		// TODO Auto-generated method stub
+		return user_bookMapper.listAllPublishedBook(id);
+	}
+	/* (non-Javadoc)
+	 * @see com.ssm.service.User_bookService#Unpublish(com.ssm.pojo.User_book)
+	 */
+	@Override
+	public void Unpublish_Delete_User_book(User_book user_book) {
+		// TODO Auto-generated method stub
+		user_bookMapper.Unpublish_Delete_User_book(user_book);
+	}
+	/* (non-Javadoc)
+	 * @see com.ssm.service.User_bookService#SelectPublishedBookBy_Bid_Uid(com.ssm.pojo.User_book)
+	 */
+	@Override
+	public FindAllBook SelectPublishedBookBy_Bid_Uid(User_book user_book) {
+		// TODO Auto-generated method stub
+		return user_bookMapper.SelectPublishedBookBy_Bid_Uid(user_book);
 	}
 
 }

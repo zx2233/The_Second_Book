@@ -69,7 +69,6 @@ public class Booktest {
 		book.setBook_Up_Down("2");
 		bookService.update(book);
 	}
-
 	@Test
 	public void getBook() {
 		Book book = bookService.get("2");
@@ -78,7 +77,8 @@ public class Booktest {
 
 	@Test
 	public void getAllBook() {
-		List<FindAllBook> list = bookService.listAllBook();
+		String id="1";
+		List<FindAllBook> list = bookService.listAllAuditedBook(id);
 		for (FindAllBook findAllBook : list) {
 			System.out.println(findAllBook.getBook_Name());
 		}

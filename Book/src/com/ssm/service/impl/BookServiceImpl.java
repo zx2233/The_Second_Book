@@ -83,8 +83,28 @@ public class BookServiceImpl implements BookService {
 	 * @see com.ssm.service.BookService#listAllBook()
 	 */
 	@Override
-	public List<FindAllBook> listAllBook() {
+	public List<FindAllBook> listAllAuditedBook(String id) {
 		// TODO Auto-generated method stub
-		return bookMapper.listAllBook();
+		return bookMapper.listAllAuditedBook(id);
 	}
+
+	/* (non-Javadoc)
+	 * @see com.ssm.service.BookService#listAllBookNoAudit(java.lang.String)
+	 */
+	@Override
+	public List<FindAllBook> listAllBookNoAudit(String id) {
+		// TODO Auto-generated method stub
+		return  bookMapper.listAllBookNoAudit(id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ssm.service.BookService#listAllBook(java.lang.String)
+	 */
+	@Override
+	public List<FindAllBook> listAllBookUnpublish(String id) {
+		// TODO Auto-generated method stub
+		return bookMapper.listAllBookUnpublish(id);
+	}
+
+	
 }

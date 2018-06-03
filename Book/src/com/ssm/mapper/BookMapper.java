@@ -22,5 +22,7 @@ public interface BookMapper {
     public List<Book> list();
     public void update(Book book);
     public Book get(String id);
-    public List<FindAllBook> listAllBook();
+    public List<FindAllBook> listAllAuditedBook(String id);
+    public List<FindAllBook> listAllBookNoAudit(String id);
+    public List<FindAllBook> listAllBookUnpublish(String id);
 }

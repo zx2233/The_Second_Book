@@ -12,7 +12,10 @@ package com.ssm.pojo;
  * @date2018-5-27下午7:50:18
  */
 public class FindAllBook extends User_book {
-
+	private String User_Uid;
+	private String Book_Bid;
+	private String Selling_status;
+	private String Aduit_status;
 	private String Book_Name;
 	private String Book_New_or_Old;
 	private String Book_Number;
@@ -118,5 +121,89 @@ public class FindAllBook extends User_book {
 	public void setBook_Up_Down(String book_Up_Down) {
 		Book_Up_Down = book_Up_Down;
 	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	
+
+	/** 
+	 * @author:Rabbit
+	 * @return the aduit_status
+	 */
+	public String getAduit_status() {
+		return Aduit_status;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 *
+	/**
+	 * @author:Rabbit
+	 * @param aduit_status the aduit_status to set
+	 */
+	public void setAduit_status(String aduit_status) {
+		Aduit_status = aduit_status;
+	}
+	/** 
+	 * @author:Rabbit
+	 * @return the book_Bid
+	 */
+	public String getBook_Bid() {
+		return Book_Bid;
+	}
+	/**
+	 * @author:Rabbit
+	 * @param book_Bid the book_Bid to set
+	 */
+	public void setBook_Bid(String book_Bid) {
+		Book_Bid = book_Bid;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	/** 
+	 * @author:Rabbit
+	 * @return the user_Uid
+	 */
+	public String getUser_Uid() {
+		return User_Uid;
+	}
+	/**
+	 * @author:Rabbit
+	 * @param user_Uid the user_Uid to set
+	 */
+	public void setUser_Uid(String user_Uid) {
+		User_Uid = user_Uid;
+	}
+	
+	/** 
+	 * @author:Rabbit
+	 * @return the selling_status
+	 */
+	public String getSelling_status() {
+		return Selling_status;
+	}
+	/**
+	 * @author:Rabbit
+	 * @param selling_status the selling_status to set
+	 */
+	public void setSelling_status(String selling_status) {
+		Selling_status = selling_status;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "FindAllBook [User_Uid=" + User_Uid + ", Book_Bid=" + Book_Bid
+				+ ", Selling_status=" + Selling_status + ", Aduit_status="
+				+ Aduit_status + ", Book_Name=" + Book_Name
+				+ ", Book_New_or_Old=" + Book_New_or_Old + ", Book_Number="
+				+ Book_Number + ", Book_Price=" + Book_Price
+				+ ", Book_Description=" + Book_Description + ", Book_Image="
+				+ Book_Image + ", Book_Up_Down=" + Book_Up_Down + "]";
+	}
+
+
+
 	
 }

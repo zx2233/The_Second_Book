@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.ssm.pojo.Book;
 import com.ssm.pojo.FindAllBook;
+import com.ssm.pojo.User_book;
 
 /**
  * @ClassName:BookService
@@ -27,5 +28,13 @@ public interface BookService {
 
 	Book get(String id);
 
-	List<FindAllBook> listAllBook();
+	List<FindAllBook> listAllAuditedBook(String id);
+	
+	List<FindAllBook> listAllBookNoAudit(String id);
+	
+	List<FindAllBook> listAllBookUnpublish(String id);
+	
+
+	
+	
 }

@@ -35,4 +35,12 @@ public class User_bookTest {
 			System.out.println(user_book.getAduit_status());
 		}
 	}
+	@Test
+	public void publish() {
+		User_book user=new User_book();
+		user.setBook_Bid("2");
+		user.setUser_Uid("1");
+		user.setAduit_status("已审核");
+		user_bookService.publish(user);
+	}
 }

@@ -7,6 +7,7 @@ package com.ssm.mapper;
 
 import java.util.List;
 
+import com.ssm.pojo.FindAllBook;
 import com.ssm.pojo.User_book;
 
 /**
@@ -18,4 +19,8 @@ import com.ssm.pojo.User_book;
 public interface User_bookMapper {
 	 public List<User_book> list();
 	 public void add(User_book user_book);
+	 public void publish(User_book user_book);
+	 public List<FindAllBook>  listAllPublishedBook(String id);
+	 public void Unpublish_Delete_User_book(User_book user_book); 
+	 public FindAllBook SelectPublishedBookBy_Bid_Uid(User_book user_book); 
 }

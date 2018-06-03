@@ -11,7 +11,6 @@ body {
 	padding: 0;
 	margin-left: 30px;
 }
-
 .toptitle {
 	height: 40px;
 	line-height: 40px;
@@ -151,7 +150,7 @@ body {
 .rightdiv dl dd {
 	margin: 3px 0;
 }
-
+	
 .rightdiv dl dt {
 	color: #e4393c;
 	font-weight: bold;
@@ -168,7 +167,6 @@ body {
 	color: #737373;
 	font-weight: normal;
 }
-
 .rightPic {
 	position: relative;
 	right: -35px;

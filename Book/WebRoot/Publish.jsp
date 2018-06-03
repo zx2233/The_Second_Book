@@ -5,24 +5,24 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>No,I am not find</title>
-
+<title>Are_you_ok?</title>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/AduitResult.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="css/bootstrap-responsive.min.css"
 	type="text/css"></link>
 <link rel="stylesheet" href="css/top.css" type="text/css"></link>
-<script type="text/javascript" src="js/AduitResult.js"></script>
+<link href="assets/css/style.css" rel="stylesheet" />
+<script src="assets/js/script.js"></script>
 <link rel="stylesheet" href="css/Aduitresult.css" type="text/css"></link>
+<script type="text/javascript" src="js/AduitResult_publish.js"></script>
 <script type="text/javascript" src="js/Published.js"></script>
 <script type="text/javascript" src="js/Published_UnPublished.js"></script>
-<script type="text/javascript" src="js/AduitResult_publish.js"></script>
 <script type="text/javascript" src="js/Published_UpdateMesg.js"></script>
 </head>
 <body>
@@ -72,7 +72,8 @@
 											class="icon-edit"></i>书籍发布</span> </a>
 								</div>
 								<div class="accordion-inner">
-									 <a href="javascript:void(0)" id="AduitClick"><span><i
+									<!-- <a href="updateBookAduit" id="AduitClick"><span><i -->
+									<a href="javascript:void(0)" id="AduitClick"><span><i
 											class="icon-edit"></i>审核结果</span> </a>
 								</div>
 							</div>
@@ -89,7 +90,6 @@
 								<div class="accordion-inner">
 									<a href="#"><span><i class="icon-gift"></i>已购买</span> </a>
 								</div>
-
 							</div>
 						</div>
 						<div class="accordion-group">
@@ -144,71 +144,68 @@
 			<div class="span10">
 				<div class="hero-unit">
 					<div id="ajaxchange">
-						<form class="form-horizontal" action="addBook" method="post"
-							enctype="multipart/form-data">
-							<div class="control-group">
-								<label class="control-label" for="inputEmail">书籍名称</label>
-								<div class="controls">
-									<input type="text" name="Book_Name" placeholder="书籍名称">
+						<div id="clock" class="light">
+
+							<div class="display">
+
+								<div class="weekdays"></div>
+
+								<div class="ampm"></div>
+
+								<div class="alarm"></div>
+
+								<div class="digits"></div>
+
+							</div>
+
+						</div>
+						<div class="button-holder">
+							<a id="switch-theme" class="button">Switch Theme</a> <a
+								class="alarm-button"></a>
+						</div>
+						<!-- The dialog is hidden with css -->
+						<div class="overlay">
+							<div id="alarm-dialog">
+								<h2>Set alarm after</h2>
+								<label class="hours"> Hours <input type="number"
+									value="0" min="0" /> </label> <label class="minutes"> Minutes
+									<input type="number" value="0" min="0" /> </label> <label
+									class="seconds"> Seconds <input type="number" value="0"
+									min="0" /> </label>
+								<div class="button-holder">
+									<a id="alarm-set" class="button blue">Set</a> <a
+										id="alarm-clear" class="button red">Clear</a>
+								</div>
+								<a class="close"></a>
+							</div>
+						</div>
+						<div class="overlay">
+							<div id="time-is-up">
+								<h2>Time's up!</h2>
+								<div class="button-holder">
+									<a class="button blue">Close</a>
 								</div>
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">新旧程度</label>
-								<div class="controls">
-									<select name="Book_New_or_Old">
-										<option value="四成">四成</option>
-										<option value="五成">五成</option>
-										<option value="六成">六成</option>
-										<option value="七成">七成</option>
-									</select>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">书籍数量</label>
-								<div class="controls">
-									<input type="text" name="Book_Number" placeholder="书籍数量"">
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">书籍价格</label>
-								<div class="controls">
-									<input type="text" name="Book_Price" placeholder="书籍价格"">
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">书籍图片</label>
-								<div class="controls">
-									<input type="file" name="file">
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">书籍描述</label>
-								<div class="controls">
-									<textarea name="Book_Description" rows="5"></textarea>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls">
-									<button type="submit" class="btn btn-primary">提交</button>
-								</div>
-							</div>
-							<font color=" #e4393c"><h4>${message}</h4> </font>
-						</form>
+						</div>
+						<audio id="alarm-ring" preload> <source
+							src="assets/audio/ticktac.mp3" type="audio/mpeg" /> <source
+							src="assets/audio/ticktac.ogg" type="audio/ogg" /> </audio>
+						<script
+							src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
 					</div>
 				</div>
-
 				<!--/row-->
 			</div>
 			<!--/span-->
 		</div>
 		<!--/row-->
 	</div>
-	<HR id="hr" style="FILTER: alpha(opacity=0,finishopacity=100,style=1)"
+	<!-- <HR id="hr" style="FILTER: alpha(opacity=0,finishopacity=100,style=1)"
 		width="100%" color=#987cb9 SIZE=3>
 	<div id="footer">
 		<div class="container">
 			<p class="muted credit">此致感谢 cctv</p>
 		</div>
-	</div>
+	</div> -->
 </body>
 </html>
