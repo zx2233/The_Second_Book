@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.BookMapper">
+	<!-- 增加书籍 -->
+	<insert id="add" parameterType="Book">
+		insert into book values
+		(#{Book_Bid},#{Book_Name},
+		#{Book_New_or_Old},#{Book_Number},#{Book_Price}
+		,#{Book_Description}
+		,#{Book_Image},#{Book_Up_Down})
+	</insert>
+	<!--查询全部书籍，List -->
+	<select id="list" resultType="Book">
+		select * from book
+	</select>
+	<!-- 删除书籍按ID -->
+	<delete id="delete" parameterType="String">
+		delete from book where
+		Book_Bid= #{id}
+	</delete>
+	<!-- 根据ID查询 -->
+	<select id="get" parameterType="String" resultType="Book">
+		select * from
+		book where Book_Bid= #{id}
+	</select>
+	<!-- 修改书籍信息 -->
+	<update id="update" parameterType="Book">
+		update book set
+		Book_Bid=#{Book_Bid},Book_Name=#{Book_Name},
+		Book_New_or_Old=#{Book_New_or_Old},Book_Number=#{Book_Number},
+		Book_Price=#{Book_Price},Book_Description=#{Book_Description},
+		Book_Image=#{Book_Image},Book_Up_Down=#{Book_Up_Down}
+		where
+		Book_Bid=#{Book_Bid}
+	</update>
+	<!-- 查询所有审核通过状态的书籍 -->
+	<select id="listAllAuditedBook" resultType="FindAllBook" parameterType="String">
+		select * from user_book,book
+		where user_book.Book_Bid=book.Book_Bid 
+		and user_book.Aduit_status='已审核' and User_Uid=#{id}
+	</select>
+	<!-- 查询所有审核未通过状态的书籍 -->
+	<select id="listAllBookNoAudit" resultType="FindAllBook" parameterType="String">
+		select * from user_book,book
+		where user_book.Book_Bid=book.Book_Bid 
+		and user_book.Aduit_status='未审核' and User_Uid=#{id}
+	</select>
+	<!-- 查询所有未审核和已审核状态的书籍，并且书籍为未发布状态 -->
+	<select id="listAllBookUnpublish" resultType="FindAllBook" parameterType="String">
+		select * from user_book,book
+		where user_book.Book_Bid=book.Book_Bid 
+		and  User_Uid=#{id} and user_book.Aduit_status LIKE '%审核%'
+		and user_book.Selling_status='未发布'
+	</select>
+	<!-- 查询所有已发布状态的书籍 ，并进行Book_Name和Book_Description进行模糊查询-->
+	<select id="listAllBookPublish" resultType="FindAllBook" >
+		select b.*,u.User_Uid,u.Book_Bid AS Book_BUid,u.Aduit_status,u.Selling_status,u.isCollection  
+		from user_book as u,book as b
+		where u.Book_Bid=b.Book_Bid 
+		and  User_Uid=#{0} and u.Selling_status='已发布' and (b.Book_Name LIKE "%"#{1}"%"
+		or b.Book_Description LIKE "%"#{1}"%")
+	</select>
+	<!-- <select id="listAllBookUnpublish" resultType="FindAllBook" parameterType="String">
+		select * from user_book,book
+		where user_book.Book_Bid=book.Book_Bid 
+		and  User_Uid=#{id} and user_book.Aduit_status LIKE '%审核%'
+		and user_book.Selling_status='未发布'
+	</select> -->
+	
+	<!-- 对书籍进行下架操作，删除book表中书籍记录 -->
+	<!-- <delete id="Unpublish_book" parameterType="Book">
+		delete from book where  Book_Bid=#{Book_Bid} 
+	</delete> -->
+</mapper>
+

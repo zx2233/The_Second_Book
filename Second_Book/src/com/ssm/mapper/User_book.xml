@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.mapper.User_bookMapper">
+
+	<select id="list" resultType="User_book">
+		select * from user_book
+	</select>
+	
+	<!-- 上传书籍的同时，对user_book进行级联添加 ，书籍的状态为 未审核 -->
+	<insert id="add" parameterType="Book">
+		insert into user_book values
+		(#{User_Uid},#{Book_Bid},
+		#{Aduit_status},#{Selling_status},#{isCollection})
+	</insert>
+	
+	<select id="listAllBook" parameterType="java.util.List"
+		resultType="User_book">
+		select * from user_book
+	</select>
+	
+	<!-- 对已审核商品进行发布，即修改售卖状态为已发布 -->
+	<update id="publish" parameterType="User_book">
+		update user_book set
+		Selling_status='已发布'
+		where User_Uid=#{User_Uid} and Book_Bid=#{Book_Bid} and Aduit_status='已审核'
+	</update>
+	
+	<!-- 查询所有已审核状态的书籍，并且书籍为已发布状态 -->
+	<select id="listAllPublishedBook" resultType="FindAllBook" parameterType="String">
+		select * from user_book,book
+		where user_book.Book_Bid=book.Book_Bid 
+		and  User_Uid=#{id} and user_book.Aduit_status='已审核'
+		and user_book.Selling_status='已发布'
+	</select>
+	
+	<!-- 根据Book_Bid和User_Uid查询，并且书籍为已发布状态,已审核 -->
+	<select id="SelectPublishedBookBy_Bid_Uid" resultType="FindAllBook" parameterType="User_book">
+		select * from user_book,book
+		where user_book.Book_Bid=book.Book_Bid
+		 and book.Book_Bid=#{Book_Bid} and  User_Uid=#{User_Uid} and user_book.Aduit_status='已审核'
+		and user_book.Selling_status='已发布'
+	</select>
+	
+	<!-- 查询所有未审核和已审核状态的书籍，并且书籍为已发布状态 -->
+	<!-- <select id="listAllPublishedBook1" resultType="FindAllBook" parameterType="String">
+		select * from user_book,book
+		where user_book.Book_Bid=book.Book_Bid 
+		and  User_Uid=#{id} and user_book.Aduit_status LIKE '%审核%'
+		and user_book.Selling_status='已发布'
+	</select> -->
+	
+	<!-- 对书籍进行下架操作，删除user_book表中书籍记录 -->
+	<delete id="Unpublish_Delete_User_book" parameterType="User_book">
+		delete from user_book where User_Uid=#{User_Uid} and Book_Bid=#{Book_Bid} 
+	</delete>
+	<!-- 对在审核中的书籍，进行取消审核操作，既删除状态为未审核的user_book表中记录 -->
+	<delete id="CancelAduit" parameterType="User_book">
+		delete from user_book where User_Uid=#{User_Uid} and Book_Bid=#{Book_Bid} and Aduit_status LIKE '%审核%'
+	</delete>
+	
+	<!-- 对书籍状态进行修改 -->
+	<!-- <update id="Unpublish1" parameterType="User_book">
+		update user_book set
+		Selling_status='未发布', Aduit_status='Null'
+		where User_Uid=#{User_Uid} and Book_Bid=#{Book_Bid} 
+	</update> -->
+	
+</mapper>
+
